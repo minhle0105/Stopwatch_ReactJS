@@ -11,7 +11,7 @@ function App() {
   const handleStart = () => {
     intervalId.current = setInterval(() => {
       setTime(prevState => prevState - 1);
-    }, 100)
+    }, 1000)
     setIsOn(true);
     console.log("Start -> " + intervalId.current)
   }
