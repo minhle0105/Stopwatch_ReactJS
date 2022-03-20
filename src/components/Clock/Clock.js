@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import './Clock.css';
 
 export const Clock = () => {
 
@@ -16,6 +17,11 @@ export const Clock = () => {
     let minuteIntervalId = useRef(0);
     let secIntervalId = useRef(1);
     let milisecIntervalId2 = useRef(2);
+
+    const playButtonImageLink = 'https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg';
+    const pauseButtonImageLink = 'https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg';
+    const resetButtonImageLink = 'https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg';
+
   
     useEffect(() => {
         setMinuteDisplay(minute < 10 ? "0" + minute : minute);
@@ -56,10 +62,19 @@ export const Clock = () => {
     }
   
     return (
-        <div>
-          <h1>{minuteDisplay} : {secDisplay} : {milisecDisplay}</h1>
-          <button onClick={isOn ? handleStop : handleStart}>{isOn ? 'Stop' : 'Start'}</button>
-          <button onClick={handleReset}>Reset</button>
+        <div className='stopwatch'>
+            <div className='circle'>
+                <span className='time' >{minuteDisplay} : {secDisplay} : {milisecDisplay}</span>
+            </div>
+            <div className='control'>
+                <button onClick={isOn ? handleStop : handleStart} className='buttonPlay'>
+                    <img id={isOn ? 'pauseButton' : 'playButton'} src={isOn ? pauseButtonImageLink : playButtonImageLink} alt={isOn ? 'Pause' : 'Start'} />
+                </button>
+
+                <button onClick={handleReset} className='buttonReset'>
+                    <img id="resetButton" src={resetButtonImageLink} />
+                </button>
+            </div>
         </div>
     );
 }
