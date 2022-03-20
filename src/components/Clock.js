@@ -12,7 +12,7 @@ export const Clock = () => {
   
     useEffect(() => {
       setSecDisplay(sec < 10 ? "0" + sec : sec);
-      setMiliSecDisplay(milisec < 10 ? '0' + (milisec + "").substring(0,2) : (milisec + "").substring(0,2));
+      setMiliSecDisplay(milisec < 10 ? '0' + milisec : milisec);
     }, [sec, milisec])
   
     const handleStart = () => {
@@ -20,7 +20,7 @@ export const Clock = () => {
         setSec(prevState => prevState + 1);
       }, 1000)
       intervalId2.current = setInterval(() => {
-        setMilisec(prevState => prevState === 100 ? 0 : (prevState + 1));
+        setMilisec(prevState => prevState === 99 ? 0 : (prevState + 1));
       }, 0.1);
       setIsOn(true);
     }
