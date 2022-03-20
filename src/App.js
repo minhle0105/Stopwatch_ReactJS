@@ -1,9 +1,7 @@
 import { useState, useRef } from 'react';
 
-
-
 function App() {
-  const [time, setTime] = useState(0);
+  const [sec, setSec] = useState(0);
   const [milisec, setMilisec] = useState(0);
   const [isOn, setIsOn] = useState(false);
 
@@ -12,7 +10,7 @@ function App() {
 
   const handleStart = () => {
     intervalId.current = setInterval(() => {
-      setTime(prevState => prevState + 1);
+      setSec(prevState => prevState + 1);
     }, 1000)
     intervalId2.current = setInterval(() => {
       setMilisec(prevState => prevState === 1000 ? 0 : prevState + 1);
@@ -33,7 +31,7 @@ function App() {
   const handleReset = () => {
     clearInterval(intervalId.current);
     clearInterval(intervalId2.current);
-    setTime(0);
+    setSec(0);
     setMilisec(0);
     setIsOn(false);
   }
@@ -41,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h1>{time < 10 ? "0" + time : time} : {milisec < 10 ? '0' + (milisec + "").substring(0,2) : (milisec + "").substring(0,2)}</h1>
+        <h1>{sec < 10 ? "0" + sec : sec} : {milisec < 10 ? '0' + (milisec + "").substring(0,2) : (milisec + "").substring(0,2)}</h1>
         <button onClick={isOn ? handleStop : handleStart}>{isOn ? 'Stop' : 'Start'}</button>
         <button onClick={handleReset}>Reset</button>
       </div>
