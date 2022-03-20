@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useRef } from 'react';
+
+
 
 function App() {
+  const [time, setTime] = useState(180);
+  const [isOn, setIsOn] = useState(false);
+
+  let intervalId = useRef(1);
+
+  const handleStart = () => {
+    intervalId.current = setInterval(() => {
+      setTime(prevState => prevState - 1);
+    }, 100)
+    setIsOn(true);
+    console.log("Start -> " + intervalId.current)
+  }
+
+  const handleStop = () => {
+    console.log("Clear -> " + intervalId.current)
+    setIsOn(false);
+    clearInterval(intervalId.current);
+  }
+
+  const handleReset = () => {
+    clearInterval(intervalId.current);
+    setTime(180);
+    setIsOn(false);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1>{time}</h1>
+        <button onClick={isOn ? handleStop : handleStart}>{isOn ? 'Stop' : 'Start'}</button>
+        <button onClick={handleReset}>Reset</button>
+      </div>
     </div>
   );
 }
