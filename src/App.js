@@ -16,13 +16,9 @@ function App() {
       setMilisec(prevState => prevState === 1000 ? 0 : prevState + 1);
     }, 1);
     setIsOn(true);
-    console.log("Start -> " + intervalId.current)
-    console.log("Start milisec -> " + intervalId2.current)
   }
 
   const handleStop = () => {
-    console.log("Clear -> " + intervalId.current)
-    console.log("Clear milisec -> " + intervalId2.current)
     setIsOn(false);
     clearInterval(intervalId.current);
     clearInterval(intervalId2.current);
