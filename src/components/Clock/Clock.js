@@ -18,9 +18,9 @@ export const Clock = () => {
     let secIntervalId = useRef(1);
     let milisecIntervalId2 = useRef(2);
 
-    const playButtonImageLink = 'https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg';
-    const pauseButtonImageLink = 'https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg';
-    const resetButtonImageLink = 'https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg';
+    const playButtonImageLink = './play-button_opkxmt.svg';
+    const pauseButtonImageLink = './pause-button_pinhpy.svg';
+    const resetButtonImageLink = './reset-button_mdv6wf.svg';
 
   
     useEffect(() => {
@@ -63,8 +63,9 @@ export const Clock = () => {
   
     return (
         <div className='stopwatch'>
+            <h1><span className='gold'>GOLD</span> STOPWATCH</h1>
             <div className='circle'>
-                <span className='time' >{minuteDisplay} : {secDisplay} : {milisecDisplay}</span>
+                <span className='time'>{minuteDisplay}:{secDisplay}:{milisecDisplay}</span>
             </div>
             <div className='control'>
                 <button onClick={isOn ? handleStop : handleStart} className='buttonPlay'>

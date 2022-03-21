@@ -33,6 +33,7 @@ body {
   
     border: 2px solid;
     border-radius: 50%;
+    border-color: #f2c94c;
   }
   
   .time {
@@ -60,7 +61,7 @@ body {
     background: transparent;
     padding: 0;
     border: none;
-    margin: 15px;
+    margin: 10px;
     outline: none;
   }
   
