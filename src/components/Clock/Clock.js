@@ -62,9 +62,9 @@ export const Clock = () => {
     }
   
     return (
-        <div className='stopwatch'>
+        <div className='stopwatch' style={{marginTop: 50}}>
             <h1><span className='gold'>GOLD</span> STOPWATCH</h1>
-            <div className='circle'>
+            <div className='circle' onClick={isOn ? handleStop : handleStart}>
                 <span className='time'>{minuteDisplay}:{secDisplay}:{milisecDisplay}</span>
             </div>
             <div className='control'>
