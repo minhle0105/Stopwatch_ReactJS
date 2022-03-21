@@ -73,7 +73,7 @@ export const Clock = () => {
                 </button>
 
                 <button onClick={handleReset} className='buttonReset'>
-                    <img id="resetButton" src={resetButtonImageLink} />
+                    <img id="resetButton" src={resetButtonImageLink}  alt="Reset"/>
                 </button>
             </div>
         </div>
