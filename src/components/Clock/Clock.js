@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './Clock.css';
 
-export const Clock = () => {
+export const Clock = (props) => {
 
     const [minute, setMinute] = useState(0);
     const [minuteDisplay, setMinuteDisplay] = useState("0" + minute);
@@ -11,8 +11,6 @@ export const Clock = () => {
 
     const [milisec, setMilisec] = useState(0);
     const [milisecDisplay, setMiliSecDisplay] = useState("0" + milisec)
-
-    const [isOn, setIsOn] = useState(false);
   
     let minuteIntervalId = useRef(0);
     let secIntervalId = useRef(1);
@@ -41,11 +39,11 @@ export const Clock = () => {
         milisecIntervalId2.current = setInterval(() => {
             setMilisec(prevState => prevState === 99 ? 0 : (prevState + 1));
         }, 0.1);
-        setIsOn(true);
+        props.toggle(true);
     }
   
     const handleStop = () => {
-        setIsOn(false);
+        props.toggle(false);
         clearInterval(minuteIntervalId.current);
         clearInterval(secIntervalId.current);
         clearInterval(milisecIntervalId2.current);
@@ -58,18 +56,18 @@ export const Clock = () => {
         setMinute(0);
         setSec(0);
         setMilisec(0);
-        setIsOn(false);
+        props.toggle(false);
     }
   
     return (
         <div className='stopwatch' style={{marginTop: 50}}>
             <h1><span className='gold'>GOLD</span> STOPWATCH</h1>
-            <div className='circle' onClick={isOn ? handleStop : handleStart}>
+            <div className='circle' onClick={props.isOn ? handleStop : handleStart}>
                 <span className='time'>{minuteDisplay}:{secDisplay}:{milisecDisplay}</span>
             </div>
             <div className='control'>
-                <button onClick={isOn ? handleStop : handleStart} className='buttonPlay'>
-                    <img id={isOn ? 'pauseButton' : 'playButton'} src={isOn ? pauseButtonImageLink : playButtonImageLink} alt={isOn ? 'Pause' : 'Start'} />
+                <button onClick={props.isOn ? handleStop : handleStart} className='buttonPlay'>
+                    <img id={props.isOn ? 'pauseButton' : 'playButton'} src={props.isOn ? pauseButtonImageLink : playButtonImageLink} alt={props.isOn ? 'Pause' : 'Start'} />
                 </button>
 
                 <button onClick={handleReset} className='buttonReset'>
